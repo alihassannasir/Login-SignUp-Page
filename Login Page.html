@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .log {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 80px;
+        height: 60vh;
+        width: 35vw;
+        background: whitesmoke;
+        box-shadow: 1px 2px 4px 6px grey;
+    }
+
+    #log2 {
+        display: none;
+        height: 85vh;
+    }
+
+    .log input {
+        margin: 18px auto 9px auto;
+        width: 24vw;
+        height: 8vh;
+        border-radius: 5px;
+        padding: 12px;
+    }
+
+    .log a{
+        color: grey;
+        text-decoration: none;
+    }
+
+    button {
+        background-color: blue;
+        border: 1px solid black;
+        color: white;
+        padding: 7px 29px;
+        margin: 6px 7px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="log" id="log1">
+            <h2>Log in</h2><br>
+            <p>Log in with your email</p>
+            <input type="text" id="mail" placeholder="Email or Number" required pattern="[A-Za-z0-9]">
+            <div id="note1"></div>
+            <input type="password" id="pass" placeholder="Passward" required pattern="[0-9]{8}">
+            <div id="note2"></div>
+            <button onclick="validation()">Log in</button>
+            <p>Create new account <button onclick="func()">Sign up</button></p>
+        </div>
+
+        <div class="log" id="log2">
+            <h2>Create a new account here</h2>
+            <input type="text" placeholder="First Name" pattern="[A-Za-z]" required>
+            <input type="text" placeholder="Last Name" pattern="[A-Za-z]">
+            <input type="tel" placeholder="Mobile Number" pattern="{11}" required>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password" pattern="[A-Za-z0-9].{6,}" required>
+            <button>Sign Up</button><br>
+            <a href="#" onclick="func1()">Back to login page</a>
+        </div>
+    </div>
+
+    <script>
+        function func(){
+            document.querySelector("#log1").style.display = "none";
+            document.querySelector("#log2").style.display = "flex";
+        }
+        function func1(){
+            document.querySelector("#log1").style.display = "flex";
+            document.querySelector("#log2").style.display = "none";
+        }
+        function validation(){
+            var x = document.querySelector("#mail").value;
+            var y = document.querySelector("#pass").value;
+
+            if(x.length==0){
+                document.querySelector("#note1").innerHTML = "Email or Number must be entered"
+                return false;
+            }
+            else if(x.length !=11){
+                document.querySelector("#note1").innerHTML = "Enter a valid email or number"
+                return false;
+            }
+            else if(y.length==0){
+                document.querySelector("#note2").innerHTML = "Password must be entered"
+            }
+            else if(y.length < 8){
+                document.querySelector("#note2").innerHTML = "Password must be 8 characters long"
+            }
+        }
+    </script>
+</body>
+
+</html>
